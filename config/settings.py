@@ -1,0 +1,4 @@
+HF_MODEL = "all-MiniLM-L6-V2"
+CHUNK_SIZE = 300
+CHUNK_OVERLAP = 50
+TEMP_PDF_PATH = "./temp.pdf"
