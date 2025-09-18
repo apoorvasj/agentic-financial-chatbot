@@ -14,10 +14,20 @@ class BasicChatbotNode:
         self.llm_json = model_json
     
     def llm_basic(self,state:State):
-        return{"response":[self.llm.invoke(state["query"])]}
+        """
+        A basic chatbot node that answers general finance queries.
+        """
+        prompt= """You are a financial query chatbot. Answer the questions related to finances or stocks and financial regulations. For
+             any other unrelated query state your purpose clearly."""
+        response = self.llm.invoke(
+            [SystemMessage(content= prompt)]+
+            [HumanMessage(content=state["query"])]
+        )
+        
+        return{"response":response}
         
     def llm_summariser(self,state:State):
-        #regular LLM node
+        """A summariser after a tool/API call is made."""
         llm_base = self.llm
         system = summariser_prompt()
         summary_prompt = ChatPromptTemplate.from_messages([
@@ -30,7 +40,10 @@ class BasicChatbotNode:
         return {"response":response}
     
     def llm_tool(self, state:State):
-        #LLM with tools node
+        """
+        LLM with tools node
+        Decides which tool to call
+        """
         tools = get_tools()
         llm_tooled = self.llm.bind_tools(tools)
         response = llm_tooled.invoke(

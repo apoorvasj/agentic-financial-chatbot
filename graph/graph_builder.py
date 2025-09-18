@@ -1,6 +1,7 @@
 from state.state import State
 from langgraph.graph import StateGraph, START, END
 from nodes.chatbot_node import BasicChatbotNode
+from nodes.rag_node import RagNode
 from services.tools import get_tools
 from langgraph.prebuilt import ToolNode, tools_condition
 
@@ -16,6 +17,7 @@ class GraphBuilder:
         Builds a chatbot graph using LangGraph
         """
         self.basic_chatbot_node = BasicChatbotNode(self.llm,self.llm_json)
+        self.rag_node  = RagNode(self.llm)
         
         #add nodes
         #self.graph_builder.add_node("router", self.basic_chatbot_node.router)
@@ -23,6 +25,9 @@ class GraphBuilder:
         self.graph_builder.add_node("tools",ToolNode(self.tools))
         self.graph_builder.add_node("tool_summariser", self.basic_chatbot_node.llm_summariser)
         self.graph_builder.add_node("QnA_node",self.basic_chatbot_node.llm_basic)
+        self.graph_builder.add_node("Retriever",self.rag_node.retrieve)
+        self.graph_builder.add_node("RAG_summariser",self.rag_node.process_docs)
+        
         #add edges
         #self.graph_builder.add_edge(START, "tool_node")
         #self.graph_builder.add_conditional_edges("tool_node",tools_condition)
@@ -34,11 +39,13 @@ class GraphBuilder:
                                                  self.basic_chatbot_node.router,
                                                  {
                                                      "apisearch": "tool_node",
-                                                     "vectorstore":"QnA_node",
+                                                     "vectorstore":"Retriever",
                                                      "general":"QnA_node"
                                                  })
         self.graph_builder.add_edge("tool_node","tools")
         self.graph_builder.add_edge("tools","tool_summariser")
+        self.graph_builder.add_edge("Retriever", "RAG_summariser")
+        self.graph_builder.add_edge("RAG_summariser", END)
         self.graph_builder.add_edge("tool_summariser",END)
         self.graph_builder.add_edge("QnA_node",END)
             

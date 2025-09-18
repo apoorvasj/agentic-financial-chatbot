@@ -13,5 +13,6 @@ class State(TypedDict):
     response: str = "" #llm response
     messages: str = ""
     documents: str = ""
+    rag_generation: str =""
     
 
