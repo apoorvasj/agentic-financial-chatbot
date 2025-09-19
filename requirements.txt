@@ -1,0 +1,13 @@
+langchain
+langgraph
+langchain-groq
+python-dotenv
+langchain-fmp-data
+yfinance
+google-search-results
+ipython
+langchain_chroma
+langchain_huggingface
+pypdf
+sentence-transformers
+langchain-cohere
