@@ -18,3 +18,6 @@ This financial chatbot aims to bridge that gap by providing beginners interested
 <li> RAG Agent: Retrieves and explains SEBI rules, Zerodha guides, beginner-friendly docs.
 <li> Financial Agent: Calls real-time APIs (Google Finance Tool, Yahoo Finance Tool) for live stock data.
 </ul>
+
+<img width="1435" height="488" alt="image" src="https://github.com/user-attachments/assets/dbd443cc-f55f-4a71-9f74-e3d568544e75" />
+
