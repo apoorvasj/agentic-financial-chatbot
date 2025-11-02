@@ -7,11 +7,19 @@ from langchain import hub
 from langchain_cohere import CohereEmbeddings
 from services.prompts import rag_prompt
 from langchain_core.prompts import ChatPromptTemplate
+from config.settings import TEMP_PDF_PATH
+import streamlit as st
 
 """Provides RAG-related helper functions.
 """
+def upload_doc(uploaded_file):
+    file_path= TEMP_PDF_PATH
+    print("File path is ",file_path)
+    with open(file_path,"wb") as f:
+        f.write(uploaded_file.getvalue())
 
-def load_vectorstore(PDF_PATH):
+@st.cache_resource
+def load_vectorstore():
     """Function to process a document.
     1. Load the document.
     2. Split or chunk the document into smaller pieces.
@@ -19,7 +27,7 @@ def load_vectorstore(PDF_PATH):
     4. Store in a vectorstore
     """
     
-    loader = PyPDFLoader(PDF_PATH)
+    loader = PyPDFLoader(TEMP_PDF_PATH)
     docs = loader.load()
     splitter = RecursiveCharacterTextSplitter(chunk_size = CHUNK_SIZE, chunk_overlap = CHUNK_OVERLAP)
     splitted = splitter.split_documents(docs)

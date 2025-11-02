@@ -1,6 +1,6 @@
 def router_prompt():
     """
-    Returns ptompt instructions for router node.
+    Returns prompt instructions for router node.
     """
         
     router_instructions = """You are an expert at routing a user question to a vectorstore, financial/stock API search or general QnA.
@@ -21,8 +21,7 @@ def tool_node_prompt():
     Decide which finanical tool to call
     """
     
-    tool_instructions = """You are a financial data assistant.
-You have access to two tools:
+    tool_instructions = """You are a financial data assistant. You have access to two tools:
 
 Yahoo Finance Tool — Best for detailed financial data such as U.S. stock tickers, historical market data, financial statements, earnings reports, insider transactions, and in-depth company profiles.
 
@@ -56,8 +55,8 @@ Example Inputs and Actions:
 
 "What are the top financial regulations affecting banking in the U.S.?" → Yahoo Finance Tool
 
-    """
-    
+"""
+
     return tool_instructions
 
 def summariser_prompt():

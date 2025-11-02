@@ -6,8 +6,6 @@ from langchain_core.tools import StructuredTool
 def get_tools():
     google_tool = GoogleFinanceQueryRun(api_wrapper=GoogleFinanceAPIWrapper())
     yahoo_tool = YahooFinanceNewsTool()
-    
-    
-    tools = [google_tool, yahoo_tool]
+    tools = [yahoo_tool, google_tool]
     return tools
 
