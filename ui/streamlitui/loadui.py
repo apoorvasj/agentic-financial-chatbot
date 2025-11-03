@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import uuid
 from ui.uiconfigfile import Config
+from services.memory.fetch_id import fetch_thread_ids
 
 class LoadStreamlitUI:
     def __init__(self):
@@ -80,7 +81,7 @@ class LoadStreamlitUI:
             self.user_controls["GROQ_API_KEY"]= st.session_state["GROQ_API_KEY"]=st.text_input("Groq API Key", type="password")
             self.user_controls["uploaded_pdf"]= st.file_uploader("Choose a PDF file.", type="pdf")
             if "ids" not in st.session_state:
-                st.session_state.ids = []
+                st.session_state.ids = fetch_thread_ids()
             new_session_request = st.checkbox("New Session")
             if(new_session_request):
                 thread_id = str(uuid.uuid4())

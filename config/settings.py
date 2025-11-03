@@ -3,3 +3,4 @@ CHUNK_SIZE = 300
 CHUNK_OVERLAP = 50
 #TEMP_PDF_PATH = r"C:\Users\My PC\VIT\4th_year_project\financial_chatbot\zerodha.pdf"
 TEMP_PDF_PATH = "./temp.pdf"
+DB_URI="dbname= finance_chatbot host = 127.0.0.1 user = postgres password=4455 port=5432"

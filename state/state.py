@@ -13,6 +13,9 @@ class State(TypedDict):
     response: str = "" #llm response
     messages: str = ""
     documents: str = ""
-    rag_generation: str =""
+    #rag_generation: str =""
+    re_gen_required: str = ""
+    re_gen_limit: int = 0
+    hallucination_present: str = ""
     
 

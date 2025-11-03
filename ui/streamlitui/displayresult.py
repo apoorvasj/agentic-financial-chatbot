@@ -13,14 +13,14 @@ class DisplayResultStreamlit:
             st.write(user_message)
             
         # Pass plain string to graph
-        """
+        
         config = {"configurable":{
             "thread_id": thread_id
         }}
-        """
-        response = graph.invoke({'query':user_message})
+        
+        response = graph.invoke({'query':user_message},config = config)
 
         with st.chat_message("assistant"):
-            st.write(response["response"].content)
+            st.write(response["response"])
         with st.chat_message("human"):
             st.write(response)

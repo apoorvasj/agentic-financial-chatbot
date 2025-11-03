@@ -62,8 +62,8 @@ def load_agentic_app():
             graph= graph_builder.chatbot_build_graph()
 
             #Get the PNG bytes from the LangGraph graph
-            png_bytes = graph.get_graph(xray=True).draw_mermaid_png()
-            st.image(png_bytes, caption="LangGraph Mermaid Diagram")
+            #png_bytes = graph.get_graph(xray=True).draw_mermaid_png()
+            #st.image(png_bytes, caption="LangGraph Mermaid Diagram")
 
             DisplayResultStreamlit(graph,user_message).display_result_on_ui(thread_id)
             

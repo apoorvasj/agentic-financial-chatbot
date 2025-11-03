@@ -20,7 +20,7 @@ class RagNode:
         """
         
         query = state["query"]
-        retriever = load_vectorstore(TEMP_PDF_PATH)
+        retriever = load_vectorstore()
         docs = retriever.invoke(query)
         doc_texts = [clean_text(doc.page_content) for doc in docs]
         return {"documents":doc_texts}
@@ -32,7 +32,7 @@ class RagNode:
             state (State): The current graph state
 
         Returns:
-            state(dict): New key added to state, rag_generation that contains summary of retrieved documents.
+            state(dict): New key added to state, response that contains summary of retrieved documents.
         """
         
         question = state['query']
@@ -40,4 +40,4 @@ class RagNode:
         generation = rag_chain(self.llm, documents, question)
         clean_generation = clean_text(generation)
         
-        return {"rag_generation": clean_generation}
+        return {"response": clean_generation}

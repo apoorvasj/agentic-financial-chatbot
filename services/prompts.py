@@ -72,3 +72,23 @@ def rag_prompt():
     If you don't know the answer, try to answer based on your general finance knowledge.
     """
     return prompt
+
+def hallucination_grade_prompt():
+    prompt="""You are a grader assessing whether an LLM generation is grounded in / supported by a set of retrieved facts. \n 
+    Give a binary score 'yes' or 'no'. 'Yes' means that the answer is grounded in / supported by the set of facts."""
+     
+    return prompt
+
+def retrieval_grade_prompt():
+    prompt= """You are a grader assessing relevance of retrieved document to a user question.
+    If the document contains keyword(s) or semantic meaning related to the question, grade it as relevant.
+    Give a binary score 'yes' or 'no' score to indicate whether the document is relevant to the question.
+    Output format (strictly): "yes" or "no"
+    """
+    return prompt
+
+def rewrite_prompt():
+    prompt ="""You a question re-writer that converts an input question to a better
+    version that is optimized for web search. Look at the input and try to reason about the underlying semantic intent/ meaning.
+    """
+    return prompt
